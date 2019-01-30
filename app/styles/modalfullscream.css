@@ -1,0 +1,41 @@
+.modalfull {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.modal-dialogfull {
+  position: fixed;
+  margin: 0;
+  width: 95%;
+  height: 95%;
+  padding: 0;
+  margin-left: 2.5%;
+  margin-top: 1%;
+}
+
+.modal-contentfull {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px solid #0a0b0c00;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  background: #f1f3f5;
+  border-left: 1px solid darken(#f1f3f5, 10%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: darken(#f1f3f5, 20%);
+}
