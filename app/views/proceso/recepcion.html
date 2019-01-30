@@ -1,0 +1,670 @@
+<div class="row">
+  <div class="col-12" style="margin-bottom: 15px;">
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h3 class="page-title">Gestion de Correspondencia</h3>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a ui-sref="helium.inicio">Inicio</a></li>
+                <li class="breadcrumb-item"><a ui-sref="helium.recepcion">Proceso</a></li>
+                <li class="breadcrumb-item active" ui-sref="helium.recepcion" aria-current="page">Recepcion</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="tabs tabs-style-underline">
+      <nav id="tabs" style="height: 50px;width: 40%;margin-bottom: -1px;">
+        <ul style="height: 50px;">
+          <li id="tab1" ng-click="tabs('tab1',1); listarCorrespendiciaEntrada('destruir');" class="tab-current tab_status"><a
+            class="alement"><i class="mdi mdi-airplane-landing"></i><span>Entrada</span></a></li>
+            <li id="tab2" ng-click="tabs('tab2',2); listarCorrespendiciaSalida('destruir');" class="tab_status"><a class="alement"><i
+              class="mdi mdi-airplane-takeoff"></i><span>Salida</span></a></li>
+            </ul>
+          </nav>
+          <div class="content-wrap">
+            <section id="section-underline-1" class="content_status content-current">
+              <div class="col-12">
+                <h5 class="card-title m-b-0 amber text-left" style="cursor:pointer;" ng-click="openmodal('crear','data')">Correspondencia
+                  <i class="fas fa-th-large"></i></h5>
+                  <div class="table-responsive">
+                    <table id="table-entrada" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="text-center"><strong class="text-center">#</strong></th>
+                          <th class="text-center"><b>FECHA</b></th>
+                          <th class="text-center"><b>RADICADO<b></th>
+                            <th class="text-center"><b>TIPO DOCUMENTO</b></th>
+                            <th class="text-center"><b>REMITENTE</b></th>
+                            <th class="text-center"><b>DESTINATARIO</b></th>
+                            <th class="text-center"><b>ESTADO</b></th>
+                            <th colspan="1" class="text-center"><b>ACCIÓNES</b></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="x in listarEntrada">
+                            <th class="text-center">{{$index + 1}}</th>
+                            <td class="text-center">{{x.FechaRadicacion}}</td>
+                            <td class="text-center">{{x.CodigoInterno}}</td>
+                            <td class="text-center">{{x.NombreTipoDocumental}}</td>
+                            <td class="text-center">{{x.NombreRemitenteExterno}}</td>
+                            <td class="text-center">{{x.NombreAreaAsignadoDocumento}} - {{x.NombreUsuarioAsignadoDocumento}}</td>
+                            <td class="text-center">{{x.NombreEstadoCorrespondencia}}</td>
+                            <td class="text-center" style="padding-bottom: 0px; padding-top: 9px;">
+
+                              <button type="button" style="cursor:pointer; padding: 0 5px;" ng-click="openmodal('detalle',x)"
+                              tooltip data-toggle="tooltip" data-placement="left" data-original-title="Detalle" class="btn bg-deep-orange waves-effect waves-float">
+                              <i style="line-height: normal; font-size: 23px;" class="font-28 mdi mdi-book-open white"></i>
+                            </button>
+
+                            <button type="button" ng-click="AbrirModalSubirDocumento(x.CorrespondenciaId,x.CodigoInterno)" style="cursor:pointer; padding: 0 5px;"
+                            tooltip data-toggle="tooltip" data-placement="left" data-original-title="Subir Documento" class="btn bg-green waves-effect waves-float">
+                            <i style="line-height: normal; font-size: 23px;" class="font-28 mdi mdi-cloud-download white"></i>
+                          </button>
+
+                          <button type="button" ng-click="openBarCode(x.CodigoInterno,x.FechaRadicacion)" style="cursor:pointer; padding: 0 5px;"
+                          tooltip data-toggle="tooltip" data-placement="left" data-original-title="Codigo de Barra" class="btn bg-black waves-effect waves-float">
+                          <i style="line-height: normal; font-size: 23px;" class="font-28 mdi mdi-barcode white"></i>
+                        </button>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <section id="section-underline-2" class="content_status">
+            <div class="col-12">
+              <h5 class="card-title m-b-0 amber text-left" style="cursor:pointer;" ng-click="openmodal('crear','data')">Correspondencia
+                <i class="fas fa-th-large"></i></h5>
+                <div class="table-responsive">
+                  <table id="table-salida" class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="text-center"><strong class="text-center">#</strong></th>
+                        <th class="text-center"><b>FECHA</b></th>
+                        <th class="text-center"><b>RADICADO<b></th>
+                          <th class="text-center"><b>TIPO DOCUMENTO</b></th>
+                          <th class="text-center"><b>REMITENTE</b></th>
+                          <th class="text-center"><b>DESTINATARIO</b></th>
+                          <th class="text-center"><b>ESTADO</b></th>
+                          <th colspan="1" class="text-center"><b>ACCIÓNES</b></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="x in listarSalida">
+                          <th class="text-center">{{$index + 1}}</th>
+                          <td class="text-center">{{x.FechaRadicacion}}</td>
+                          <td class="text-center">{{x.CodigoInterno}}</td>
+                          <td class="text-center">{{x.NombreTipoDocumental}}</td>
+                          <td class="text-center">{{x.NombreAreaRemitente}} - {{x.NombreRemitente}}</td>
+                          <td class="text-center">{{x.NombreDestinarioExterno}} - {{x.NombreDestinatarioExternoPersona}}</td>
+                          <td class="text-center">{{x.NombreEstadoCorrespondencia}}</td>
+                          <td class="text-center" style="padding-bottom: 0px; padding-top: 9px;">
+                            <button type="button" style="cursor:pointer; padding: 0 5px;" ng-click="openmodal('detalle',x)"
+                            tooltip data-toggle="tooltip" data-placement="left" data-original-title="Detalle" class="btn bg-deep-orange waves-effect waves-float">
+                            <i style="line-height: normal; font-size: 23px;" class="font-28 mdi mdi-book-open white"></i>
+                          </button>
+                          <button type="button" ng-click="openBarCode(x.CodigoInterno,x.FechaRadicacion)" style="cursor:pointer; padding: 0 5px;"
+                          tooltip data-toggle="tooltip" data-placement="left" data-original-title="codigo de Barra" class="btn bg-black waves-effect waves-float">
+                          <i style="line-height: normal; font-size: 23px;" class="font-28 mdi mdi-barcode white"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+        <div id="modaluirecepcion" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" style="width: 72%;" role="document">
+            <div class="modal-content" style="width: 130%;">
+              <div class="modal-header" style="padding-bottom: 0px;">
+                <div class="row mb-3">
+                  <div class="col-xs-12">
+                    <h3 class="modal-title ml30" id="exampleModalLabel">{{titulomodal}}</h3>
+                  </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form novalidate>
+                  <div id="testmodal" class="demo-masked-input" style="padding: 5px 20px;">
+                    <div>
+                      <!--Informacion Del Remitente -->
+                      <h5 class="card-title m-b-0 amber">Informacion Del Remitente<i class="fas fa-sitemap"></i></h5>
+                      <div class="row mb-3">
+                        <div class="col-xs-12 col-sm-4 col-lg-4">
+                          <label for="tipodocumento" class="control-label col-form-label">Fecha Documento</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="datepicker-autoclose" ng-model="recepcion.fecha"
+                            data-date-format="dd/mm/yyyy" placeholder="DD/MM/YYYY">
+                            <div class="input-group-append">
+                              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-lg-4">
+                          <label for="tipodocumento" class="control-label col-form-label">Origen</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                            </div>
+                            <select class="form-control" aria-describedby="addon" ng-model="recepcion.origen" ng-change="obtenerDatos(recepcion.origen)"
+                            name="origen" requiered>
+                            <option value="">Seleccionar Correspondencia</option>
+                            <option ng-selected="user.sede" ng-repeat="to in LisTipoOrigen" value="{{to.Codigo}}">{{to.Nombre}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarCorrespondecia">
+                        <label for="tipodocumento" class="control-label col-form-label">Oficina</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                          </div>
+                          <select class="form-control" aria-describedby="addon" ng-model="recepcion.oficina" name="oficina"
+                          ng-change="ObtengoArea(recepcion.oficina)" requiered>
+                          <option value="">SELECCIONAR</option>
+                          <option ng-repeat="lao in LisSedeOficina" value="{{lao.Codigo}}">{{lao.Nombre}} -
+                          {{lao.NombreSede}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarCorrespondecia">
+                      <label for="tipodocumento" class="control-label col-form-label">Area</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="addontipodocumento"><i class="fa fa-user"></i></span>
+                        </div>
+                        <select class="select2 form-control custom-select" aria-describedby="addontipodocumento"
+                        ng-model="recepcion.area" ng-change="ObtengoUsuarioArea(recepcion.area)" name="area"
+                        required>
+                        <option value="" selected>SELECCIONAR AREA</option>
+                        <option ng-repeat="laa in LisArea track by $index" value="{{laa.Codigo}}">{{laa.Nombre}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarRemitenteInterno">
+                    <label for="tipodocumento" class="control-label col-form-label">Nombre</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                      </div>
+                      <select class="form-control" aria-describedby="addon" ng-model="recepcion.remitenteinterno" name="remitenteinterno" requiered>
+                        <option value="" selected>SELECCIONAR</option>
+                        <option ng-repeat="uaa in UsuarioArea" value="{{uaa.UserAreaId}}">{{uaa.NombresApellido}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="TipoDeTramiteExterno">
+                    <label for="tipodocumento" class="control-label col-form-label">Tipo De Remitente</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                      </div>
+                      <select class="form-control" aria-describedby="addon" ng-model="recepcion.tipotramite" name="oficina"
+                      ng-change="CambiarTipoTramite(recepcion.tipotramite)" requiered>
+                      <option value="">SELECCIONAR</option>
+                      <option value="PN">Persona Natural</option>
+                      <option value="E">Entidad</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramitePN">
+                  <label for="tipodocumento" class="control-label col-form-label">Entidad Del Tramite</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                    </div>
+                    <select class="form-control" aria-describedby="addon" id="oficina" ng-model="recepcion.entidad"
+                    name="oficina" requiered>
+                    <option value="" selected>Seleccionar Entidad Del Tramite</option>
+                    <option ng-selected="user.oficina" ng-repeat="ent in Entidad" value="{{ent.Codigo}}">{{ent.Nombre}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramite">
+                <label for="documento" class="control-label col-form-label">Nombre</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="nombrearea" aria-describedby="addon" ng-model="recepcion.nombre"
+                  name="nombre" placeholder="Nombre" required>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramite">
+                <label for="tipodocumento" class="control-label col-form-label">Empresa De Mensajeria</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                  </div>
+                  <select class="form-control" aria-describedby="addon" id="oficina" ng-model="recepcion.empresamensajeria"
+                  name="oficina" requiered>
+                  <option value="" selected>Seleccionar Empresa</option>
+                  <option ng-repeat="ent in LisMensajeria" value="{{ent.Codigo}}">{{ent.Nombre}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramite">
+              <label for="documento" class="control-label col-form-label"># Guia</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control" id="guia" aria-describedby="addon" ng-model="recepcion.numeroguia"
+                name="guia" placeholder="Guia" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Cierre Del Remitente -->
+        <div ng-hide="OcultarInformacionCorrespondencia">
+          <!--Informacion De La Correspondencia -->
+          <h5 class="card-title m-b-0 amber">Informacion De La Correspondencia <i class="fas fa-sitemap"></i></h5>
+          <div class="row mb-3">
+            <div class="col-xs-12 col-sm-3 col-lg-3">
+              <label for="tipodocumento" class="control-label col-form-label">Tipo De Correspondencia</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                </div>
+                <select class="form-control" aria-describedby="addon" ng-model="recepcion.tipocorrespondencia"
+                name="tipocorrespondencia" requiered>
+                <option value="">Seleccionar Correspondencia</option>
+                <option  ng-repeat="ltc in array" value="{{ltc.codigo}}">{{ltc.nombre}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-lg-3">
+            <label for="tipodocumento" class="control-label col-form-label">Categoria</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="addontipodocumento"><i class="fa fa-user"></i></span>
+              </div>
+              <select class="select2 form-control custom-select" aria-describedby="addontipodocumento"
+              ng-model="recepcion.categoria" name="categoria" required>
+              <option value="" selected>Seleccionar Categoria</option>
+              <option  ng-repeat="lcm in LisCategoria" value="{{lcm.Codigo}}">{{lcm.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-lg-3">
+          <label for="tipodocumento" class="control-label col-form-label">Unidad De Medida</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+            </div>
+            <select class="form-control" aria-describedby="addon" ng-model="recepcion.unidadmedida" name="unidadmedida"
+            requiered>
+            <option value="">Seleccionar Unidad</option>
+            <option  ng-repeat="lum in LisUnidadMedida" value="{{lum.Codigo}}">{{lum.Nombre}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-lg-3">
+        <label for="documento" class="control-label col-form-label">Cantidad</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+          </div>
+          <input type="text" nombersOnly class="form-control" id="area" aria-describedby="addon"
+          ng-model="recepcion.cantidad" name="cantidad" placeholder="Cantidad" required>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="documento" class="control-label col-form-label">Asunto</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+        </div>
+        <input type="text" class="form-control" id="nombrearea" aria-describedby="addon" ng-model="recepcion.asunto"
+        name="asunto" placeholder="Asunto" required>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="documento" class="control-label col-form-label">Observacion</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+        </div>
+        <textarea type="text" class="form-control" id="nombrecategoria" aria-describedby="addon"
+        ng-model="recepcion.observacion" name="observacion" rows="2" cols="80"></textarea>
+      </div>
+    </div>
+  </div>
+  <!--Cierre Del La Informacion De La Correspondencia -->
+
+  <div ng-hide="OcultarInformacionDestinatario">
+    <!--Informacion Del Destinatario -->
+    <h5 class="card-title m-b-0 amber">Informacion Del Destinatario <i class="fas fa-sitemap"></i></h5>
+    <!-- Listo -->
+    <div class="row mb-3" ng-hide="DestinoOcultar">
+      <!-- <div class="row mb-3"> -->
+        <div class="col-xs-12 col-sm-4 col-lg-4">
+          <label for="tipodocumento" class="control-label col-form-label">Destino</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+            </div>
+            <select class="form-control" aria-describedby="addon" ng-model="recepcion.origendest"
+            ng-change="obtenerDatosDestinatario(recepcion.origendest)" name="origendest" requiered>
+            <option value="">Seleccionar Correspondencia</option>
+            <option ng-repeat="to in LisTipoOrigen" value="{{to.Codigo}}">{{to.Nombre}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarCorrespondeciaDestinatario">
+        <label for="tipodocumento" class="control-label col-form-label">Oficina</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+          </div>
+          <select class="form-control" aria-describedby="addon" ng-model="recepcion.oficinadest" name="oficinadest"
+          ng-change="ObtengoAreaDestinatario(recepcion.oficinadest)" requiered>
+          <option value="">SELECCIONAR</option>
+          <option ng-repeat="laodes in LisSedeOficina" value="{{laodes.Codigo}}">{{laodes.Nombre}} -
+          {{laodes.NombreSede}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarCorrespondeciaDestinatario">
+      <label for="tipodocumento" class="control-label col-form-label">Area</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="addontipodocumento"><i class="fa fa-user"></i></span>
+        </div>
+        <select class="select2 form-control custom-select" aria-describedby="addontipodocumento"
+        ng-model="recepcion.areadest" ng-change="ObtengoUsuarioAreaDestinatario(recepcion.areadest)"
+        required>
+        <option value="" selected>SELECCIONAR AREA</option>
+        <option ng-repeat="lades in LisAreaDest track by $index" value="{{lades.Codigo}}">{{lades.Nombre}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="OcultarRemitenteInternoDestinatario">
+    <label for="tipodocumento" class="control-label col-form-label">Destinatario Interno</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+      </div>
+      <select class="form-control" aria-describedby="addon" ng-model="recepcion.remitenteinternodest"
+      name="remitenteinternodest" requiered>
+      <option value="" selected>SELECCIONAR</option>
+      <option ng-repeat="ua in UsuarioAreaDestinatario" value="{{ua.UserAreaId}}">{{ua.NombresApellido}}</option>
+    </select>
+  </div>
+</div>
+</div>
+<div class="row mb-3">
+  <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="TipoDeTramiteExternoDestinatario">
+    <label for="tipodocumento" class="control-label col-form-label">Tipo De Destinatario</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+      </div>
+      <select class="form-control" aria-describedby="addon" ng-model="recepcion.tipotramitedest"
+      name="tipotramitedest" ng-change="CambiarTipoTramiteDestinatario(recepcion.tipotramitedest)"
+      requiered>
+      <option value="">SELECCIONAR</option>
+      <option value="PN">Persona Natural</option>
+      <option value="E">Entidad</option>
+    </select>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramiteDestinatarioPN">
+  <label for="tipodocumento" class="control-label col-form-label">Entidad Del Tramite</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+    </div>
+    <select class="form-control" aria-describedby="addon" id="oficina" ng-model="recepcion.entidaddest"
+    name="entidaddest" requiered>
+    <option value="" selected>Seleccionar Entidad Del Tramite</option>
+    <option ng-repeat="ent in Entidad" value="{{ent.Codigo}}">{{ent.Nombre}}</option>
+  </select>
+</div>
+</div>
+<div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramiteDestinatario">
+  <label for="documento" class="control-label col-form-label">Nombre</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+    </div>
+    <input type="text" class="form-control" id="nombrearea" aria-describedby="addon" ng-model="recepcion.nombredest"
+    name="nombredest" placeholder="Nombre" required>
+  </div>
+</div>
+</div>
+<div class="row mb-3">
+  <div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramiteDestinatario">
+    <label for="tipodocumento" class="control-label col-form-label">Empresa De Mensajeria</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+      </div>
+      <select class="form-control" aria-describedby="addon" id="oficina" ng-model="recepcion.empresamensajeriadest"
+      name="empresamensajeriadest" requiered>
+      <option value="" selected>Seleccionar Empresa</option>
+      <option ng-repeat="ent in LisMensajeria" value="{{ent.Codigo}}">{{ent.Nombre}}</option>
+    </select>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-4 col-lg-4" ng-hide="EntidadDelTramiteDestinatario">
+  <label for="documento" class="control-label col-form-label"># Guia</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+    </div>
+    <input type="text" class="form-control" id="guia" aria-describedby="addon" ng-model="recepcion.numeroguiadest"
+    name="numeroguiadest" placeholder="Guia" required>
+  </div>
+</div>
+</div>
+</div>
+<div class="row mb-3">
+  <div class="col-sm-2">
+    <div class="input-group">
+      <button type="button" ng-click="uiReceopcion()" class="btn waves-effect bg-light-green white">
+        <i class="mdi mdi-send"></i>
+        <span class="ng-binding" style="margin-left: 5px;"></span>{{btnnombremodal}}</span>
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-6" ng-hide="OcultarCargue">
+    <div class="input-group">
+      <label class="input-group-btn">
+        <span class="btn waves-effect bg-light-green white">
+          <i class="mdi mdi-file"></i> Cargar Soporte <input type="file" style="display: none;"
+          multiple>
+        </span>
+      </label>
+      <input type="text" class="form-control" readonly>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<div id="modaluidetalle" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" style="width: 72%;" role="document">
+    <div class="modal-content" style="width: 130%;">
+      <div class="modal-header" style="padding-bottom: 0px;">
+        <div class="row mb-3">
+          <div class="col-xs-12">
+            <h3 class="modal-title ml30" id="exampleModalLabel">Detalle Correspondencia</h3>
+          </div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered dataTable no-footer">
+          <tbody>
+            <tr>
+              <th><strong>Tipo Documento</strong> </th><td colspan="3">{{detalle.NombreTipoDocumental}}</td>                    
+            </tr>
+            <tr>
+              <th><strong>Fecha Radicación</strong></th><td>{{detalle.FechaRadicacion}}</td>
+              <th><strong>Numero Radicado</strong> </th><td>{{detalle.CodigoInterno}}</td>
+            </tr>
+
+            <tr>
+              <th><strong>Categoria</strong> </th><td>{{detalle.NombreCategoria}}</td>
+              <th><strong>Cantidad</strong> </th><td>{{detalle.NumeroFolio}} - {{detalle.SiglaUnidadMedida}}</td>
+            </tr>
+            <tr>
+              <th><strong>Origen Correspondencia</strong></th><td>{{detalle.NombreOrigenCorrespondencia}}</td>
+              <th><strong>Destino Correspondencia</strong> </th><td>{{detalle.NombreDestino}}</td>                    
+            </tr>
+            <tr>
+              <!-- Entrada -->
+              <th ng-hide="Mostrar"><strong>Lugar De Destino</strong> </th><td ng-hide="Mostrar">{{detalle.NombreAreaAsignadoDocumento}}</td>
+              <!-- Salida -->
+              <th ng-show="Mostrar"><strong>Lugar De Destino</strong> </th><td ng-show="Mostrar">{{detalle.NombreDestinarioExterno}}</td>
+
+              <th ng-hide="Mostrar"><strong>Nombre Destinatario</strong> </th><td ng-hide="Mostrar">{{detalle.NombreUsuarioAsignadoDocumento}}</td>
+              <th ng-show="Mostrar"><strong>Nombre Destinatario</strong> </th><td ng-show="Mostrar">{{detalle.NombreDestinatarioExternoPersona}}</td>
+            </tr>
+            <tr>
+              <th><strong>Empresa Mensajeria</strong> </th><td>{{detalle.NombreMensajeria}}</td>
+              <th><strong>Numero De Guia</strong></th><td>{{detalle.NumeroGuia}}</td>
+            </tr>
+            <tr>
+              <th><strong>Asunto</strong></th><td colspan="3">{{detalle.Asunto}}</td>
+            </tr>
+            <tr>
+              <th><strong>Observacion</strong> </th><td colspan="3">{{detalle.Observacion}}</td>
+            </tr>
+
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<div id="modalsubirdocumento" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" style="width: 72%;" role="document">
+    <div class="modal-content" style="width: 130%;">
+      <div class="modal-header" style="padding-bottom: 0px;">
+        <div class="row mb-3">
+          <div class="col-xs-12">
+            <h3 class="modal-title ml30" id="exampleModalLabel">Subir Documento</h3>
+          </div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">        
+        <div class="row mb-3">
+          <div class="col-sm-12" >
+            <div class="input-group">
+              <label class="input-group-btn" style="margin-bottom: 0px;">
+                <span class="btn waves-effect bg-light-green white">
+                  <i class="mdi mdi-file"></i>
+                  <span class="ng-binding" style="margin-left: 5px;"></span> Cargar Soporte </span>
+                  <input type="file" id="adjunto" style="display: none;" multiple accept="application/pdf" ng-model="Documento">
+                </span>
+              </label>
+              <input type="text" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row mb-3">
+          <div class="col-sm-2">
+            <div class="input-group">
+              <button type="button" class="btn waves-effect bg-light-green white" ng-click="SubirDocumento()">
+                <i class="mdi mdi-send"></i>
+                <span class="ng-binding" style="margin-left: 5px;"></span>Subir Documento</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+button.buttons-copy.buttons-html5.dt-button{
+  background: #bf0000 !important;
+  color: white !important;
+  border-color: white !important;
+}
+button.dt-button.buttons-csv.buttons-html5{
+  background: #ffbf00 !important;
+  color: white !important;
+  border-color: white !important;
+}
+button.dt-button.buttons-excel.buttons-html5{
+  background: #00b04f !important;
+  color: white !important;
+  border-color: white !important;
+}
+button.dt-button.buttons-pdf.buttons-html5{
+  background: #27a9e3 !important;
+  color: white !important;
+  border-color: white !important;
+}
+</style>

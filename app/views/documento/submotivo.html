@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h3 class="page-title">Sub Motivos</h3>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a ui-sref="helium.inicio">Inicio</a></li>
+                <li class="breadcrumb-item"><a ui-sref="helium.motivo">Documento</a></li>
+                <li class="breadcrumb-item active" ui-sref="helium.motivo" aria-current="page">sub motivo</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title m-b-0 amber" style="cursor:pointer;" ng-click="openmodal('crear','data')">Agregar Sub Motivo <i style="font-size: 21px;" class="mdi mdi-format-list-numbers"></i></h5>
+        <div class="table-responsive">
+          <table id="table-submotivo" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center"><strong class="text-center">#</strong></th>
+                <th><b>NOMBRE</b></th>
+                <th><b>NOMBRE DEL MOTIVO</b></th>
+                <th class="text-center"><b>ESTADO</b></th>
+                <th colspan="1" class="text-center"><b>ACCIÓNES</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in listarSubMotivo">
+                <th class="text-center">{{$index + 1}}</th>
+                <td>{{x.Nombre}}</td>
+                <td>{{x.NombreMotivo}}</td>
+                <td class="text-center" style="padding-bottom: 0px; padding-top: 14px;"><h4><span class="label {{x.clase}}">{{x.EstadoSubMotivo}}</span></h4></td>
+                <td class="text-center" style="padding-bottom: 0px; padding-top: 9px;">
+                  <button type="button" style="cursor:pointer;" ng-click="openmodal('actualizar',x)" tooltip data-toggle="tooltip" data-placement="left" data-original-title="Editar" class="btn bg-light-blue waves-effect waves-float">
+                    <i class="font-28 mdi mdi-account-edit white"></i>
+                  </button>
+                  <button type="button" ng-click="cambiarEstadoSubMotivo(x.EstadoSubMotivo,x.Codigo)" style="cursor:pointer;" tooltip data-toggle="tooltip" data-placement="left" data-original-title="Cambiar estado" class="btn bg-yellow waves-effect waves-float">
+                    <i class="font-28 mdi mdi-traffic-light white"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modaluisubmotivo" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" style="width: 72%;" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-bottom: 0px;">
+          <div class="row mb-3">
+            <div class="col-xs-12"><h3 class="modal-title ml30" id="exampleModalLabel">{{titulomodal}}</h3></div>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="uiMotivo()">
+            <div id="testmodal" class="demo-masked-input" style="padding: 5px 20px;">
+              <div class="row mb-3">
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                  <label for="tipodocumento" class="control-label col-form-label">Motivo</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                    </div>
+                    <select class="form-control" aria-describedby="addon" ng-model="submotivo.codigomotivo" name="codigo" requiered>
+                      <option value="">Seleccionar</option>
+                      <option ng-selected="o.Codigo == submotivo.codigomotivo"  ng-repeat="o in listarMotivo" value="{{o.Codigo}}">{{o.Nombre}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                  <label for="documento" class="control-label col-form-label">Nombre Sub Motivo</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="addon"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre" aria-describedby="addon"  ng-model="submotivo.nombre" name="nombre" placeholder="Nombre" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-12 align-right">
+                  <div class="input-group">
+                    <button type="submit" class="btn waves-effect bg-light-green white"><i class="mdi mdi-send"></i><span> {{btnnombremodal}}</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
