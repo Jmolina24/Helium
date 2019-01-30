@@ -1,0 +1,232 @@
+{
+   "modulos":[
+      {
+         "modulo":"Helium",
+         "titulo":"Administracion",
+         "estado":true,
+         "icono":"mdi mdi-domain",
+         "id":"0",
+         "opciones":[
+            {
+               "titulo":"Empresa",
+               "url":"helium.empresa",
+               "icono":"fas fa-globe",
+               "estado":true,
+               "id":"0"
+            },
+            {
+               "titulo":"Sedes",
+               "url":"helium.sede",
+               "icono":"mdi mdi-map-marker-radius",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"1"
+            },
+            {
+               "titulo":"Oficinas",
+               "url":"helium.oficina",
+               "icono":"fas fa-building",
+               "estado":true,
+               "id":"2"
+            },
+            {
+               "titulo":"Areas",
+               "url":"helium.area",
+               "icono":"fas fa-th-large",
+               "estado":true,
+               "id":"3"
+            },
+            {
+               "titulo":"Cargos",
+               "url":"helium.cargo",
+               "icono":"mdi mdi-worker",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"4"
+            },
+            {
+               "titulo":"Mensajeria",
+               "url":"helium.mensajeria",
+               "icono":"fas fa-box-open",
+               "estado":true,
+               "id":"5"
+            },
+            {
+               "titulo":"U Medidas",
+               "url":"helium.unidadmedida",
+               "icono":"mdi mdi-weight-kilogram",
+               "style":"font-size: 20px;",
+               "estado":true,
+               "id":"6"
+            },
+            {
+               "titulo":"Terceros",
+               "url":"helium.terceros",
+               "icono":"fas fa-handshake",
+               "estado":true,
+               "id":"7"
+            }
+         ]
+      },
+      {
+         "modulo":"Helium",
+         "titulo":"Acceso",
+         "estado":true,
+         "icono":"mdi mdi-human-greeting",
+         "id":"1",
+         "opciones":[
+            {
+               "titulo":"Roles",
+               "url":"helium.rol",
+               "icono":"fas fa-server",
+               "style":"font-size: 15px;",
+               "estado":true,
+               "id":"0"
+            },
+            {
+               "titulo":"Usuarios",
+               "url":"helium.usuario",
+               "icono":"fas fa-users",
+               "style":"font-size: 15px;",
+               "estado":true,
+               "id":"1"
+            }
+         ]
+      },
+      {
+         "modulo":"Helium",
+         "titulo":"Documento",
+         "estado":true,
+         "icono":"mdi mdi-houzz",
+         "id":"2",
+         "opciones":[
+            {
+               "titulo":"Categorias",
+               "url":"helium.categoria",
+               "icono":"fas fa-sitemap",
+               "estado":true,
+               "id":"0"
+            },
+            {
+               "titulo":"Origen",
+               "url":"helium.origen",
+               "icono":"mdi mdi-call-merge",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"1"
+            },
+            {
+               "titulo":"Documentos",
+               "url":"helium.tipodocumento",
+               "icono":"far fa-file-alt",
+               "style":"font-size: 18px;",
+               "estado":true,
+               "id":"2"
+            },
+            {
+               "titulo":"Origen de Documentos",
+               "url":"helium.origendocumentos",
+               "icono":"fab fa-stack-overflow",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"3"
+            },
+            {
+               "titulo":"Motivos",
+               "url":"helium.motivo",
+               "icono":"mdi mdi-format-list-numbers",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"4"
+            },
+            {
+               "titulo":"Estados de Documentos",
+               "url":"helium.estadodocumento",
+               "icono":"mdi mdi-traffic-light",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"5"
+            },
+            {
+               "titulo":"Sub Motivos",
+               "url":"helium.submotivo",
+               "icono":"mdi mdi-format-indent-increase",
+               "style":"font-size: 21px;",
+               "estado":true,
+               "id":"6"
+            }
+         ]
+      },
+      {
+         "modulo":"Helium",
+         "titulo":"Proceso",
+         "estado":true,
+         "icono":"mdi mdi-package-variant",
+         "id":"3",
+         "opciones":[
+            {
+               "titulo":"Recepcion",
+               "url":"helium.recepcion",
+               "icono":"far fa-handshake",
+               "style":"font-size: 15px;",
+               "estado":true,
+               "id":"0"
+            },
+            {
+               "titulo":"Cargue",
+               "url":"helium.cargue",
+               "icono":"fas fa-upload",
+               "estado":true,
+               "id":"1"
+            },
+            {
+               "titulo":"Entrega",
+               "url":"helium.entrega",
+               "icono":"fas fa-archive",
+               "estado":true,
+               "id":"2"
+            },
+            {
+               "titulo":"Retencion",
+               "url":"helium.retencion",
+               "icono":"far fa-hand-paper",
+               "style":"font-size: 18px;",
+               "estado":true,
+               "id":"3"
+            }
+         ]
+      },
+      {
+         "modulo":"Helium",
+         "titulo":"Dimensiones",
+         "estado":true,
+         "icono":"mdi mdi-chart-scatterplot-hexbin",
+         "id":"4",
+         "opciones":[
+            {
+               "titulo":"Dashboard",
+               "url":"helium.dashboard",
+               "icono":"mdi mdi-view-dashboard",
+               "style":"font-size: 18px;",
+               "estado":true,
+               "id":"0"
+            },
+            {
+               "titulo":"Tiempos",
+               "url":"helium.tiempo",
+               "icono":"mdi mdi-timer",
+               "style":"font-size: 20px;",
+               "estado":true,
+               "id":"1"
+            },
+            {
+               "titulo":"BI",
+               "url":"helium.bi",
+               "icono":"fas fa-chart-line",
+               "estado":true,
+               "id":"2"
+            }
+         ]
+      }
+   ]
+}
