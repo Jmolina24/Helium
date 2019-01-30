@@ -1,0 +1,126 @@
+.bg-red{
+  background-color: #F44336 !important;
+}
+.bg-pink{
+  background-color: #E91E63 !important;
+}
+.bg-purple{
+  background-color: #9C27B0 !important;
+}
+.bg-deep-purple{
+  background-color: #673AB7 !important;
+}
+.bg-indigo{
+  background-color: #3F51B5 !important;
+}
+.bg-blue{
+  background-color: #2196F3 !important;
+}
+.bg-light-blue{
+  background-color: #03A9F4 !important;
+}
+.bg-cyan{
+  background-color: #00BCD4 !important;
+}
+.bg-teal{
+  background-color: #009688 !important;
+}
+.bg-green{
+  background-color: #4CAF50 !important;
+}
+.bg-light-green{
+  background-color: #8BC34A !important;
+}
+.bg-lime{
+  background-color: #CDDC39 !important;
+}
+.bg-yellow{
+  background-color: #FFEB3B !important;
+}
+.bg-amber{
+  background-color: #FFC107 !important;
+}
+.bg-orange{
+  background-color: #FF9800 !important;
+}
+.bg-deep-orange{
+  background-color: #FF5722 !important;
+}
+.bg-brown{
+  background-color: #795548 !important;
+}
+.bg-grey{
+  background-color: #9E9E9E !important;
+}
+.bg-blue-grey{
+  background-color: #607D8B !important;
+}
+.bg-black{
+  background-color: #000 !important;
+}
+.bg-white{
+  background-color: #ffffff !important;
+}
+.red{
+  color: #F44336 !important;
+}
+.pink{
+  color: #E91E63 !important;
+}
+.purple{
+  color: #9C27B0 !important;
+}
+.deep-purple{
+  color: #673AB7 !important;
+}
+.indigo .bg-indigo{
+  color: #3F51B5 !important;
+}
+.blue{
+  color: #2196F3 !important;
+}
+.light-blue{
+  color: #03A9F4 !important;
+}
+.cyan{
+  color: #00BCD4 !important;
+}
+.teal{
+  color: #009688 !important;
+}
+.green{
+  color: #4CAF50 !important;
+}
+.light-green{
+  color: #8BC34A !important;
+}
+.lime{
+  color: #CDDC39 !important;
+}
+.yellow{
+  color: #FFEB3B !important;
+}
+.amber{
+  color: #FFC107 !important;
+}
+.orange{
+  color: #FF9800 !important;
+}
+.deep-orange{
+  color: #FF5722 !important;
+}
+.brown{
+  color: #795548 !important;
+}
+.grey{
+  color: #9E9E9E !important;
+}
+.blue-grey{
+  color: #607D8B !important;
+}
+.black{
+  color: #000 !important;
+}
+.white{
+  color: #ffffff !important;
+}
